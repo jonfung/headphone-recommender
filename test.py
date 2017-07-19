@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, send_from_directory
 from werkzeug.utils import secure_filename
 import classify
 import convert
@@ -8,6 +8,10 @@ import convert
 
 UPLOAD_FOLDER = 'uploads'
 app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def index():
+    return send_from_directory('static', 'index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
