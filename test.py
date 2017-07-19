@@ -32,6 +32,20 @@ def show_post(post_id):
 def test():
 	return url_for('show_user_profile',username = 'Frank', age = 12)
 
+# @app.route('/upload', methods=['GET', 'POST'])
+# def upload_file():
+#     if request.method == 'POST':
+#         f = request.files['file']
+#         mp3name = secure_filename(f.filename)
+#         f.save(os.path.join(UPLOAD_FOLDER, mp3name))
+#         wavname = mp3name[:len(mp3name) - 4] + ".wav"
+#         convert.convert(mp3name, wavname)
+
+#         classification = classify.runClassify(wavname)
+#         os.remove(os.path.join(UPLOAD_FOLDER, wavname))
+#     return classification
+
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -43,7 +57,11 @@ def upload_file():
 
         classification = classify.runClassify(wavname)
         os.remove(os.path.join(UPLOAD_FOLDER, wavname))
-    return classification
 
+        print(request.form['type'])
+        print(request.form['price'])
+        #TODO: Choose Headphones based off of these params
+
+    return classification
 
 

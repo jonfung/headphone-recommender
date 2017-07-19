@@ -53,8 +53,23 @@
 
 
         <form action = "http://127.0.0.1:5000/upload" method = "POST" enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
+          <input type = "file" name = "file"/>
+
+          <select class="selectmenu" name = "type">
+            <option selected disabled class="hideoption">Select Headphone Style</option>
+            <option>Over Ear</option>
+            <option>On Ear</option>
+          </select>
+
+          <select class="selectmenu" name = "price">
+            <option selected disabled class="hideoption">Select Price Range</option>
+            <option>$0-$50</option>
+            <option>$50-$100</option>
+            <option>$100-$300</option>
+            <option>$300+</option>
+          </select>
+
+          <input type = "submit"/>
         </form>
 
       </div>
