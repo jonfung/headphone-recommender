@@ -1,2 +1,2 @@
-# headphone-reccomender
-reccomends headphones with fft
+# headphone-recommender
+recommends headphones with fft
