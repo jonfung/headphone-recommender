@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Headphone Recommender</title>
+	<meta name="description" content="Headphone Recommender">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css@0.2.14/dist/spectre.min.css">
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/jquery"></script>
+</head>
+<body>
+<div class="container grid-960">
+	<h2 style="margin-top:20%">Headphone Recommender</h2>
+	<div class="toast toast-error" id="error-toast" style="display:none">
+		<button class="btn btn-clear float-right" id="error-close"></button>
+		An error occured. :(
+	</div>
+	<div class="columns">
+		<div class="column">
+			<form>
+				<!-- form input control -->
+				<div class="form-group">
+					<label class="form-label" for="input-file">MP3</label>
+					<input class="form-input" type="file" id="input-file" required/>
+				</div>
+				<!-- form select control -->
+				<div class="form-group">
+					<select class="form-select" id="type" required>
+						<option selected disabled>Headphone Style</option>
+						<option value="over">Over Ear</option>
+						<option value="on">On Ear</option>
+						<option value="in">In Ear Monitor</option>
+					</select>
+				</div>
+				<!-- form select control -->
+				<div class="form-group">
+					<select class="form-select" id="price" required>
+						<option selected disabled>Select Price Range</option>
+						<option value="0">$0-$50</option>
+						<option value="50">$50-$100</option>
+						<option value="100">$100-$300</option>
+						<option value="300">$300+</option>
+					</select>
+				</div>
+				<button class="btn btn-primary input-group-btn" type="submit" id="submit">Submit</button>
+			</form>
+		</div>
+		<div class="divider-vert"></div>
+		<div class="column">
+			<h4>How it works</h4>
+			<ol>
+				<li>Input an mp3 file for a song you like</li>
+				<li>The file is analyzed for it's sound signature</li>
+				<li>A headphone is recommended based on your preferences</li>
+			</ol>
+		</div>
+	</div>
+	<div class="modal" id="response-modal">
+		<div class="modal-overlay"></div>
+		<div class="modal-container">
+			<div class="modal-header">
+				<button class="btn btn-clear float-right"></button>
+				<div class="modal-title">Analysis Results</div>
+			</div>
+			<div class="modal-body">
+				<div class="content">
+					<p>Analyzed frequency response type: <b id="response"></b>.</p>
+					<p>Reccommended Headphones: </p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="javascript:void(0)" class="btn btn-primary" id="modal-close">close</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$('form').on('submit', function(e) {
+	e.preventDefault()
+	$('#submit').addClass('loading')
+
+	const data = new FormData()
+	data.append('type', $("#type option:selected").text())
+	data.append('price', $("#price option:selected").text())
+	data.append('file', $('#input-file')[0].files[0])
+
+	axios.post('http://127.0.0.1:5000/upload', data)
+		.then(function (response) {
+			$('#response').text(response.data)
+			$('#response-modal').addClass('active')
+			$('#submit').removeClass('loading')
+			console.log(response);
+		})
+		.catch(function (error) {
+			$('#error-toast').show()
+			$('#submit').removeClass('loading')
+			console.log(error);
+		});
+})
+
+$('#modal-close').on('click', function(e) {
+	$('#response-modal').removeClass('active')
+})
+
+$('#error-close').on('click', function(e) {
+	$('#error-toast').hide()
+})
+</script>
+</body>
+</html>
