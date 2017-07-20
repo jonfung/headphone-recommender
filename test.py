@@ -43,6 +43,6 @@ def upload_file():
     return headphones.typeReccomend(data)
 
 
-
-
+if __name__ == '__main__':
+    app.run()
 
