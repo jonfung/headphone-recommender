@@ -66,7 +66,7 @@ $('form').on('submit', function(e) {
 	data.append('file', mp3)
 
 	var SERVER = ""
-	var PROD = false
+	var PROD = true
 	if (PROD) {
 	    SERVER = '/upload'
 	}
