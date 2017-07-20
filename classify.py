@@ -45,14 +45,14 @@ def percent(b, m, h):
 
 def classify(b, m, h):
 	if h > 9.0:
-		return "v_shaped"
+		return "V Shaped"
 	if np.absolute(b - m) < 10:
-		return "neutral"
+		return "Neutral"
 	if m > 50.0:
-		return "mid_forward"
+		return "Mid Forward"
 	if b > 60.0:
-		return "bass"
-	return "neutral"
+		return "Bass"
+	return "Neutral"
 
 def runClassify(inputname):
 	assert inputname.find('.wav') > -1
