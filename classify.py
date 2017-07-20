@@ -45,11 +45,11 @@ def percent(b, m, h):
 
 def classify(b, m, h):
 	if h > 9.0:
-		return "v shaped"
+		return "v_shaped"
 	if np.absolute(b - m) < 10:
 		return "neutral"
 	if m > 50.0:
-		return "mid forward"
+		return "mid_forward"
 	if b > 60.0:
 		return "bass"
 	return "neutral"
