@@ -9,9 +9,10 @@ import convert
 UPLOAD_FOLDER = 'uploads'
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def index():
-    return send_from_directory('static', 'index.html')
+@app.route('/', methods=['GET'], defaults={'path': 'index.html'})
+@app.route('/<path>', methods=['GET'])
+def index(path):
+    return send_from_directory('static', path)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
