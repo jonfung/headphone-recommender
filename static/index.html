@@ -14,10 +14,10 @@
 </head>
 <body>
 <div class="container grid-960">
-	<h2 style="margin-top:20%">Headphone Recommender</h2>
+	<h2 style="margin-top:10%">Headphone Recommender</h2>
 	<div class="toast toast-error" id="error-toast" style="display:none">
 		<button class="btn btn-clear float-right" id="error-close"></button>
-		An error occured. :(
+		Error: <span id="error-msg"></span> :(
 	</div>
 	<div class="columns">
 		<div class="column">
@@ -25,25 +25,41 @@
 				<!-- form input control -->
 				<div class="form-group">
 					<label class="form-label" for="input-file">MP3</label>
-					<input class="form-input" type="file" id="input-file" required/>
+					<input class="form-input" type="file" id="input-file" accept=".mp3" required/>
 				</div>
 				<!-- form select control -->
 				<div class="form-group">
+					<label class="form-label" for="type">Style</label>
 					<select class="form-select" id="type" required>
-						<option selected disabled>Headphone Style</option>
-						<option value="over">Over Ear</option>
-						<option value="on">On Ear</option>
-						<option value="in">In Ear Monitor</option>
+						<option>Over Ear</option>
+						<option>On Ear</option>
+						<option>In Ear Monitor</option>
+					</select>
+				</div>
+				<!-- dynamic form select control -->
+				<div class="form-group" id="portability-wrapper">
+					<label class="form-label" for="portability">Portability</label>
+					<select class="form-select" id="portability" required>
+						<option>Optional</option>
+						<option>Required</option>
+					</select>
+				</div>
+				<!-- dynamic form select control -->
+				<div class="form-group" id="fit-wrapper" style="display:none">
+					<label class="form-label" for="fit">Fit</label>
+					<select class="form-select" id="fit" required>
+						<option>Over the ear</option>
+						<option>Straight down</option>
 					</select>
 				</div>
 				<!-- form select control -->
 				<div class="form-group">
+					<label class="form-label" for="price">Price Range</label>
 					<select class="form-select" id="price" required>
-						<option selected disabled>Select Price Range</option>
-						<option value="0">$0-$50</option>
-						<option value="50">$50-$100</option>
-						<option value="100">$100-$300</option>
-						<option value="300">$300+</option>
+						<option>$0-$50</option>
+						<option>$50-$100</option>
+						<option>$100-$300</option>
+						<option>$300+</option>
 					</select>
 				</div>
 				<button class="btn btn-primary input-group-btn" type="submit" id="submit">Submit</button>
@@ -78,37 +94,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-$('form').on('submit', function(e) {
-	e.preventDefault()
-	$('#submit').addClass('loading')
-
-	const data = new FormData()
-	data.append('type', $("#type option:selected").text())
-	data.append('price', $("#price option:selected").text())
-	data.append('file', $('#input-file')[0].files[0])
-
-	axios.post('http://127.0.0.1:5000/upload', data)
-		.then(function (response) {
-			$('#response').text(response.data)
-			$('#response-modal').addClass('active')
-			$('#submit').removeClass('loading')
-			console.log(response);
-		})
-		.catch(function (error) {
-			$('#error-toast').show()
-			$('#submit').removeClass('loading')
-			console.log(error);
-		});
-})
-
-$('#modal-close').on('click', function(e) {
-	$('#response-modal').removeClass('active')
-})
-
-$('#error-close').on('click', function(e) {
-	$('#error-toast').hide()
-})
-</script>
+<script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
