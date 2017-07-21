@@ -1,40 +1,36 @@
 /* DYNAMIC FORM OPTIONS */
-var dynamicform = function(e) {
+$('#type, #portability').on('input', function(e) {
 	let option = $("#type option:selected").text()
 
 	if (option === 'On Ear') {
-		$('#portability-wrapper').hide()
-		$('#fit-wrapper').hide()
-		$('#soundstage-wrapper').show()
-		$('#onearhelp').show()
-		$('#overearhelp').hide()
-		$('#iemhelp').hide()
+		$('#portability-wrapper, #fit-wrapper, #overearhelp, #iemhelp').hide()
+		$('#soundstage-wrapper, #onearhelp').show()
 
 	} else if (option === 'In Ear Monitor') {
-		$('#fit-wrapper').show()
-		$('#portability-wrapper').hide()
-		$('#soundstage-wrapper').hide()
-		$('#onearhelp').hide()
-		$('#overearhelp').hide()
-		$('#iemhelp').show()
-
+		$('#fit-wrapper, #iemhelp, ').show()
+		$('#portability-wrapper, #soundstage-wrapper, #onearhelp, #overearhelp').hide()
 	} else { //over ear
-		$('#fit-wrapper').hide()
-		$('#portability-wrapper').show()
 		if ($("#portability option:selected").text() === 'Not Portable') {
 			$('#soundstage-wrapper').show()
 		}
 		else {
 			$('#soundstage-wrapper').hide()
 		}
-		$('#onearhelp').hide()
-		$('#overearhelp').show()
-		$('#iemhelp').hide()
+		$('#onearhelp, #iemhelp, #fit-wrapper').hide()
+		$('#overearhelp, #portability-wrapper').show()
 	}
-}
+})
 
-$('#type').on('input', dynamicform)
-$('#portability').on('input', dynamicform)
+makeTable = function (data) {
+	let table = '<table class="table table-striped table-hover">'
+	table += '<thead><tr><th>Price</th><th>Headphone</th></tr></thead><tbody>'
+	$.each(data, function (price, name) {
+		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`
+		table += row
+	})
+	table += '</tbody></table>'
+	return table
+};
 
 /* FORM SUBMISSION */
 $('form').on('submit', function(e) {
@@ -50,13 +46,16 @@ $('form').on('submit', function(e) {
 		$('#error-toast').show()
 		$('#submit').removeClass('loading')
 		return
-	} else if (mp3.size > 20971520) {
+	}
+
+	if (mp3.size > 20971520) {
 		$('#error-msg').text('File too large, please select a smaller .mp3 under 20MB')
 		$('#error-toast').show()
 		$('#submit').removeClass('loading')
 		return
 	}
 
+	// create form data
 	const data = new FormData()
 	data.append('type', $("#type option:selected").text())
 	data.append('portability', $("#portability option:selected").text())
@@ -65,43 +64,13 @@ $('form').on('submit', function(e) {
 	data.append('backing', $("#soundstage option:selected").text())
 	data.append('file', mp3)
 
-	var SERVER = ""
-	var PROD = true
-	if (PROD) {
-	    SERVER = '/upload'
-	}
-	else {
-	    SERVER = 'http://127.0.0.1:5000/upload'
-	}
-
-	console.log(data)
-
-	$.makeTable = function (mydata) {
-	    var table = $('<table border=1>')
-	    var tblHeader = "<tr>"
-		tblHeader += "<th>" + "PRICE" + "</th>"
-		tblHeader += "<th>" + "HEADPHONE" + "</th>"
-	    tblHeader += "</tr>"
-	    $(tblHeader).appendTo(table)
-
-	    $.each(mydata, function (price, name) {
-	        var TableRow = "<tr>"
-            TableRow += "<td>" + "$" + price + "</td>"
-            TableRow += "<td>" + name + "</td>"
-	        TableRow += "</tr>"
-	        $(table).append(TableRow)
-	    });
-	    return ($(table))
-	};
-
-
-	axios.post(SERVER, data)
+	axios.post('/upload', data)
 		.then(function (response) {
 			$('#response').text(response.data.signature)
 			$('#response-modal').addClass('active')
 			$('#submit').removeClass('loading')
 
-			var table = $.makeTable(response.data.headphones);
+			var table = makeTable(response.data.headphones);
 			$(table).appendTo("#headphonetable");
 
 			console.log(response);
@@ -124,7 +93,5 @@ $('#error-close').on('click', function(e) {
 })
 
 $('.help-close').on('click', function(e) {
-	$('#onearhelp').hide()
-	$('#overearhelp').hide()
-	$('#iemhelp').hide()
+	$('#onearhelp, #overearhelp, #iemhelp').hide()
 })
