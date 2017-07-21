@@ -1,16 +1,16 @@
 /* DYNAMIC FORM OPTIONS */
-$('#type, #portability').on('input', function(e) {
-	let option = $("#type option:selected").text()
+$('#type, #portability').on('input', function() {
+	let option = $('#type option:selected').text()
 
 	if (option === 'On Ear') {
 		$('#portability-wrapper, #fit-wrapper, #overearhelp, #iemhelp').hide()
 		$('#soundstage-wrapper, #onearhelp').show()
 
 	} else if (option === 'In Ear Monitor') {
-		$('#fit-wrapper, #iemhelp, ').show()
+		$('#fit-wrapper, #iemhelp').show()
 		$('#portability-wrapper, #soundstage-wrapper, #onearhelp, #overearhelp').hide()
 	} else { //over ear
-		if ($("#portability option:selected").text() === 'Not Portable') {
+		if ($('#portability option:selected').text() === 'Not Portable') {
 			$('#soundstage-wrapper').show()
 		} else {
 			$('#soundstage-wrapper').hide()
@@ -20,7 +20,7 @@ $('#type, #portability').on('input', function(e) {
 	}
 })
 
-makeTable = function (data) {
+let makeTable = function (data) {
 	let table = '<table class="table table-striped table-hover">'
 	table += '<thead><tr><th>Price</th>'
 	table += '<th>Headphone</th></tr></thead><tbody>'
@@ -30,9 +30,9 @@ makeTable = function (data) {
 	})
 	table += '</tbody></table>'
 	return table
-};
+}
 
-showErr = function () {
+let showErr = function () {
 	$('#error-toast').show()
 	$('#submit').removeClass('loading')
 }
@@ -61,11 +61,11 @@ $('form').on('submit', function(e) {
 
 	// create form data
 	const data = new FormData()
-	data.append('type', $("#type option:selected").text())
-	data.append('portability', $("#portability option:selected").text())
-	data.append('fit', $("#fit option:selected").text())
-	data.append('price', $("#price option:selected").text())
-	data.append('backing', $("#soundstage option:selected").text())
+	data.append('type', $('#type option:selected').text())
+	data.append('portability', $('#portability option:selected').text())
+	data.append('fit', $('#fit option:selected').text())
+	data.append('price', $('#price option:selected').text())
+	data.append('backing', $('#soundstage option:selected').text())
 	data.append('file', mp3)
 
 	axios.post('/upload', data)
@@ -74,27 +74,27 @@ $('form').on('submit', function(e) {
 			$('#response-modal').addClass('active')
 			$('#submit').removeClass('loading')
 
-			var table = makeTable(response.data.headphones);
-			$(table).appendTo("#headphonetable");
+			var table = makeTable(response.data.headphones)
+			$(table).appendTo('#headphonetable')
 
-			console.log(response);
+			console.log(response)
 		})
 		.catch(function (error) {
 			showErr()
-			console.log(error);
-		});
+			console.log(error)
+		})
 })
 
 /* CLOSING ACTIONS */
-$('.modal-overlay').on('click', function(e) {
+$('.modal-overlay').on('click', function() {
 	$('#response-modal').removeClass('active')
 })
 
-$('#modal-close').on('click', function(e) {
+$('#modal-close').on('click', function() {
 	$('#response-modal').removeClass('active')
 	$('#headphonetable').empty()
 })
 
-$('#error-close').on('click', function(e) {
+$('#error-close').on('click', function() {
 	$('#error-toast').hide()
 })
