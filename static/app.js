@@ -83,6 +83,10 @@ $('form').on('submit', function(e) {
 })
 
 /* CLOSING ACTIONS */
+$('.modal-overlay').on('click', function(e) {
+	$('#response-modal').removeClass('active')
+})
+
 $('#modal-close').on('click', function(e) {
 	$('#response-modal').removeClass('active')
 	$('#headphonetable').empty()
