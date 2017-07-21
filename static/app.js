@@ -12,8 +12,7 @@ $('#type, #portability').on('input', function(e) {
 	} else { //over ear
 		if ($("#portability option:selected").text() === 'Not Portable') {
 			$('#soundstage-wrapper').show()
-		}
-		else {
+		} else {
 			$('#soundstage-wrapper').hide()
 		}
 		$('#onearhelp, #iemhelp, #fit-wrapper').hide()
@@ -23,7 +22,8 @@ $('#type, #portability').on('input', function(e) {
 
 makeTable = function (data) {
 	let table = '<table class="table table-striped table-hover">'
-	table += '<thead><tr><th>Price</th><th>Headphone</th></tr></thead><tbody>'
+	table += '<thead><tr><th>Price</th>'
+	table += '<th>Headphone</th></tr></thead><tbody>'
 	$.each(data, function (price, name) {
 		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`
 		table += row
@@ -31,6 +31,11 @@ makeTable = function (data) {
 	table += '</tbody></table>'
 	return table
 };
+
+showErr = function () {
+	$('#error-toast').show()
+	$('#submit').removeClass('loading')
+}
 
 /* FORM SUBMISSION */
 $('form').on('submit', function(e) {
@@ -43,15 +48,14 @@ $('form').on('submit', function(e) {
 	let mp3 = $('#input-file')[0].files[0]
 	if (!mp3.name.endsWith('.mp3')) {
 		$('#error-msg').text('Invalid file, please select an .mp3')
-		$('#error-toast').show()
-		$('#submit').removeClass('loading')
+		showErr()
 		return
 	}
 
+	// verify if .mp3 is under 20MB
 	if (mp3.size > 20971520) {
 		$('#error-msg').text('File too large, please select a smaller .mp3 under 20MB')
-		$('#error-toast').show()
-		$('#submit').removeClass('loading')
+		showErr()
 		return
 	}
 
@@ -76,8 +80,7 @@ $('form').on('submit', function(e) {
 			console.log(response);
 		})
 		.catch(function (error) {
-			$('#error-toast').show()
-			$('#submit').removeClass('loading')
+			showErr()
 			console.log(error);
 		});
 })
