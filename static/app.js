@@ -95,7 +95,3 @@ $('#modal-close').on('click', function(e) {
 $('#error-close').on('click', function(e) {
 	$('#error-toast').hide()
 })
-
-$('.help-close').on('click', function(e) {
-	$('#onearhelp, #overearhelp, #iemhelp').hide()
-})
