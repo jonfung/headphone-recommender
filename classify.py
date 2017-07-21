@@ -10,6 +10,10 @@ import os
 def loadData (str):
 	filePath = 	os.path.join("uploads", str)
 	rate, data = wavfile.read(filePath)
+
+	#if only a single array is returned (in the case of recordings, return it.)
+	if (len(data.shape) == 1):
+		return rate, data
 	#if the song is dual channel, take left ear only.
 	if (len(data.T) > 1):
 		data = data.T[0]
