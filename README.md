@@ -1,4 +1,4 @@
 # headphone-recommender
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b89fc3565c5c4fdbaaf3ce579ef717d5)](https://www.codacy.com/app/drklee3/headphone-recommender?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jonfung/headphone-recommender&amp;utm_campaign=Badge_Grade)
 
-recommends headphones with fft
+Takes in a mp3 song and reccomends 100+ headphones based on price, form factor, and sound signature (bassy, neutral, mid, v-shaped). Uses the Fourier Transform and Welch's method on the mp3 to generate a spectral density estimation of the song, then classifies it and returns a list of headphones for the user.
