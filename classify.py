@@ -75,5 +75,4 @@ def runClassify(inputname):
 if __name__ == '__main__':
 	assert len(sys.argv) == 2
 	_, inputname = sys.argv
-	
 	print(runClassify(inputname))

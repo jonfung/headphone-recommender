@@ -27,7 +27,7 @@ let makeTable = function (data) {
 	$.each(data, function (name, price) {
 		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`;
 		table += row;
-	})
+	});
 	table += '</tbody></table>';
 	return table;
 };
@@ -35,7 +35,7 @@ let makeTable = function (data) {
 let showErr = function () {
 	$('#error-toast').show();
 	$('#submit').removeClass('loading');
-}
+};
 
 let validMp3Input = function () {
 	// verify if .mp3 file
@@ -54,7 +54,7 @@ let validMp3Input = function () {
 	}
 
 	return true;
-}
+};
 
 let submitData = function () {
 	let mp3 = $('#input-file')[0].files[0];
@@ -77,7 +77,7 @@ let submitData = function () {
 	data.append('price', $('#price option:selected').text());
 	data.append('file', mp3);
 
-	axios.post('/upload', data)
+	axios.post('/upload', data) // eslint-disable-line no-undef
 		.then(function (response) {
 			$('#response').text(response.data.signature);
 			$('#response-modal').addClass('active');
@@ -91,8 +91,8 @@ let submitData = function () {
 		.catch(function (error) {
 			showErr();
 			console.log(error);
-		})
-}
+		});
+};
 
 /* FORM SUBMISSION */
 $('form').on('submit', function(e) {
@@ -104,18 +104,18 @@ $('form').on('submit', function(e) {
 	if (validMp3Input()) {
 		submitData();
 	}
-})
+});
 
 /* CLOSING ACTIONS */
 $('.modal-overlay').on('click', function() {
 	$('#response-modal').removeClass('active');
-})
+});
 
 $('#modal-close').on('click', function() {
 	$('#response-modal').removeClass('active');
 	$('#headphonetable').empty();
-})
+});
 
 $('#error-close').on('click', function() {
 	$('#error-toast').hide();
-})
+});
