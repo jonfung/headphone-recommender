@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, flash, send_from_directory, jsonify
+from flask import Flask, request, flash, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
 import classify
 import convert
