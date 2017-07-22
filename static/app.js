@@ -1,116 +1,116 @@
 /* DYNAMIC FORM OPTIONS */
 $('#type, #portability').on('input', function() {
-	let option = $('#type option:selected').text()
+	let option = $('#type option:selected').text();
 
 	if (option === 'On Ear') {
-		$('#portability-wrapper, #fit-wrapper, #overearhelp, #iemhelp').hide()
-		$('#soundstage-wrapper, #onearhelp').show()
+		$('#portability-wrapper, #fit-wrapper, #overearhelp, #iemhelp').hide();
+		$('#soundstage-wrapper, #onearhelp').show();
 
 	} else if (option === 'In Ear Monitor') {
-		$('#fit-wrapper, #iemhelp').show()
-		$('#portability-wrapper, #soundstage-wrapper, #onearhelp, #overearhelp').hide()
+		$('#fit-wrapper, #iemhelp').show();
+		$('#portability-wrapper, #soundstage-wrapper, #onearhelp, #overearhelp').hide();
 	} else { //over ear
 		if ($('#portability option:selected').text() === 'Not Portable') {
-			$('#soundstage-wrapper').show()
+			$('#soundstage-wrapper').show();
 		} else {
-			$('#soundstage-wrapper').hide()
+			$('#soundstage-wrapper').hide();
 		}
-		$('#onearhelp, #iemhelp, #fit-wrapper').hide()
-		$('#overearhelp, #portability-wrapper').show()
+		$('#onearhelp, #iemhelp, #fit-wrapper').hide();
+		$('#overearhelp, #portability-wrapper').show();
 	}
 })
 
 let makeTable = function (data) {
-	let table = '<table class="table table-striped table-hover">'
-	table += '<thead><tr><th>Price</th>'
-	table += '<th>Headphone</th></tr></thead><tbody>'
+	let table = '<table class="table table-striped table-hover">';
+	table += '<thead><tr><th>Price</th>';
+	table += '<th>Headphone</th></tr></thead><tbody>';
 	$.each(data, function (name, price) {
-		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`
-		table += row
+		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`;
+		table += row;
 	})
-	table += '</tbody></table>'
-	return table
+	table += '</tbody></table>';
+	return table;
 }
 
 let showErr = function () {
-	$('#error-toast').show()
-	$('#submit').removeClass('loading')
+	$('#error-toast').show();
+	$('#submit').removeClass('loading');
 }
 
 let validMp3Input = function () {
 	// verify if .mp3 file
-	let mp3 = $('#input-file')[0].files[0]
+	let mp3 = $('#input-file')[0].files[0];
 	if (!mp3.name.endsWith('.mp3')) {
-		$('#error-msg').text('Invalid file, please select an .mp3')
-		showErr()
-		return false
+		$('#error-msg').text('Invalid file, please select an .mp3');
+		showErr();
+		return false;
 	}
 
 	// verify if .mp3 is under 20MB
 	if (mp3.size > 20971520) {
-		$('#error-msg').text('File too large, please select a smaller .mp3 under 20MB')
-		showErr()
-		return false
+		$('#error-msg').text('File too large, please select a smaller .mp3 under 20MB');
+		showErr();
+		return false;
 	}
 
-	return true
+	return true;
 }
 
 let submitData = function () {
-	let mp3 = $('#input-file')[0].files[0]
+	let mp3 = $('#input-file')[0].files[0];
 	// create form data
-	const data = new FormData()
-	data.append('type', $('#type option:selected').text())
+	const data = new FormData();
+	data.append('type', $('#type option:selected').text());
 
 	if ($('#portability').is(':visible'))
-		data.append('opt1', $('#portability option:selected').text())
+		data.append('opt1', $('#portability option:selected').text());
 
 	if ($('#fit').is(':visible'))
-		data.append('opt1', $('#fit option:selected').text())
+		data.append('opt1', $('#fit option:selected').text());
 
 	if ($('#soundstage').is(':visible'))
-		data.append('opt2', $('#soundstage option:selected').text())
+		data.append('opt2', $('#soundstage option:selected').text());
 
-	data.append('price', $('#price option:selected').text())
-	data.append('file', mp3)
+	data.append('price', $('#price option:selected').text());
+	data.append('file', mp3);
 
 	axios.post('/upload', data)
 		.then(function (response) {
-			$('#response').text(response.data.signature)
-			$('#response-modal').addClass('active')
-			$('#submit').removeClass('loading')
+			$('#response').text(response.data.signature);
+			$('#response-modal').addClass('active');
+			$('#submit').removeClass('loading');
 
-			var table = makeTable(response.data.headphones)
-			$(table).appendTo('#headphonetable')
+			var table = makeTable(response.data.headphones);
+			$(table).appendTo('#headphonetable');
 
-			console.log(response)
+			console.log(response);
 		})
 		.catch(function (error) {
-			showErr()
-			console.log(error)
+			showErr();
+			console.log(error);
 		})
 }
 
 /* FORM SUBMISSION */
 $('form').on('submit', function(e) {
-	e.preventDefault()
+	e.preventDefault();
 
-	$('#submit').addClass('loading')
-	$('#error-toast').hide() // hide error on resubmit
+	$('#submit').addClass('loading');
+	$('#error-toast').hide(); // hide error on resubmit
 
-	if (validMp3Input()) submitData()
+	if (validMp3Input()) submitData();
 })
 
 /* CLOSING ACTIONS */
 $('.modal-overlay').on('click', function() {
-	$('#response-modal').removeClass('active')
+	$('#response-modal').removeClass('active');
 })
 
 $('#modal-close').on('click', function() {
-	$('#response-modal').removeClass('active')
-	$('#headphonetable').empty()
+	$('#response-modal').removeClass('active');
+	$('#headphonetable').empty();
 })
 
 $('#error-close').on('click', function() {
-	$('#error-toast').hide()
+	$('#error-toast').hide();
 })
