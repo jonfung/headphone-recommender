@@ -6,8 +6,8 @@ from scipy import signal
 import os
 
 #loads the data
-def loadData (str):
-	filePath = 	os.path.join("uploads", str)
+def loadData (inStr):
+	filePath = 	os.path.join("uploads", inStr)
 	rate, data = wavfile.read(filePath)
 
 	#if only a single array is returned (in the case of recordings, return it.)
@@ -60,14 +60,11 @@ def classify(b, m, h):
 def runClassify(inputname):
 	assert inputname.find('.wav') > -1
 	sampling_freq, data = loadData(inputname)
-
 	NFFT = 4096
 	_, pxx_den = welch(data, sampling_freq, NFFT)
 	cut1, cut2, cut3 = findCutoffIndices(len(pxx_den), sampling_freq, NFFT)
-	
 	bass, mid, treble = integratePxx(pxx_den, cut1, cut2, cut3)
 	bpercent, mpercent, tpercent = percent(bass, mid, treble)
-	
 	result = classify(bpercent, mpercent, tpercent)
 
 	return result
@@ -80,6 +77,3 @@ if __name__ == '__main__':
 	_, inputname = sys.argv
 	
 	print(runClassify(inputname))
-
-
-	
