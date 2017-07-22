@@ -1,5 +1,4 @@
 import ffmpy
-import sys
 import os
 
 CONTAINING_FOLDER = "uploads"
