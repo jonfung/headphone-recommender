@@ -18,7 +18,7 @@ $('#type, #portability').on('input', function() {
 		$('#onearhelp, #iemhelp, #fit-wrapper').hide();
 		$('#overearhelp, #portability-wrapper').show();
 	}
-})
+});
 
 let makeTable = function (data) {
 	let table = '<table class="table table-striped table-hover">';
@@ -30,7 +30,7 @@ let makeTable = function (data) {
 	})
 	table += '</tbody></table>';
 	return table;
-}
+};
 
 let showErr = function () {
 	$('#error-toast').show();
@@ -62,14 +62,17 @@ let submitData = function () {
 	const data = new FormData();
 	data.append('type', $('#type option:selected').text());
 
-	if ($('#portability').is(':visible'))
+	if ($('#portability').is(':visible')) {
 		data.append('opt1', $('#portability option:selected').text());
+	}
 
-	if ($('#fit').is(':visible'))
+	if ($('#fit').is(':visible')) {
 		data.append('opt1', $('#fit option:selected').text());
+	}
 
-	if ($('#soundstage').is(':visible'))
+	if ($('#soundstage').is(':visible')) {
 		data.append('opt2', $('#soundstage option:selected').text());
+	}
 
 	data.append('price', $('#price option:selected').text());
 	data.append('file', mp3);
@@ -98,7 +101,9 @@ $('form').on('submit', function(e) {
 	$('#submit').addClass('loading');
 	$('#error-toast').hide(); // hide error on resubmit
 
-	if (validMp3Input()) submitData();
+	if (validMp3Input()) {
+		submitData();
+	}
 })
 
 /* CLOSING ACTIONS */
