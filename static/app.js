@@ -24,7 +24,7 @@ let makeTable = function (data) {
 	let table = '<table class="table table-striped table-hover">'
 	table += '<thead><tr><th>Price</th>'
 	table += '<th>Headphone</th></tr></thead><tbody>'
-	$.each(data, function (price, name) {
+	$.each(data, function (name, price) {
 		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`
 		table += row
 	})

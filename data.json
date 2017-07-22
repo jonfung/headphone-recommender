@@ -4,91 +4,91 @@
 			"Portable": {
 				"null": {
 					"V Shaped": {
-						"150": "Audio Technica ATH M50X",
-						"150": "Sony MDR 100 AAP",
-						"180": "Soundmagic HP150",
-						"300": "Ultrasone PRO900 S-Logic"
+						"Audio Technica ATH M50X": "150",
+						"Sony MDR 100 AAP": "150",
+						"Soundmagic HP150": "180",
+						"Ultrasone PRO900 S-Logic": "300"
 					},
 					"Mid Forward": {
-						"25": "Incipio F38 Forte",
-						"100": "KRK KNS6400",
-						"230": "Audio Technica ATH MAR7"
+						"Incipio F38 Forte": "25",
+						"KRK KNS6400": "100",
+						"Audio Technica ATH MAR7": "230"
 					},
 					"Bass": {
-						"20": "TASCAM TH02",
-						"60": "Creative Aurvana L!ve",
-						"120": "Sennheiser Urbanite",
-						"180": "Beyerdynamic COP",
-						"250": "Sennheiser Momentum 2",
-						"250": "V-Moda M100",
-						"300": "Meze 99",
-						"400": "Oppo PM3"
+						"TASCAM TH02": "20",
+						"Creative Aurvana L!ve": "60",
+						"Sennheiser Urbanite": "120",
+						"Beyerdynamic COP": "180",
+						"Sennheiser Momentum 2": "250",
+						"V-Moda M100": "250",
+						"Meze 99": "300",
+						"Oppo PM3": "400"
 					},
 					"Neutral": {
-						"25": "Monoprice 8323",
-						"90": "Audio Technica ATH M40X",
-						"185": "AKG K545",
-						"250": "NAD Viso HP50",
-						"275": "PSB M4U1"
+						"Monoprice 8323": "25",
+						"Audio Technica ATH M40X": "90",
+						"AKG K545": "185",
+						"NAD Viso HP50": "250",
+						"PSB M4U1": "275"
 					}
 				}
 			},
 			"Not Portable": {
 				"Open Back": {
 					"V Shaped": {
-						"150": "Beyerdynamic DT990 Pro",
-						"200": "Beyerdynamic DT990 Premium",
-						"250": "Philips Fidelio X2"
+						"Beyerdynamic DT990 Pro": "150",
+						"Beyerdynamic DT990 Premium": "200",
+						"Philips Fidelio X2": "250"
 					},
 					"Mid Forward": {
-						"30": "Superlux HD681(b)",
-						"75": "Philips SHP9500",
-						"80": "Audio Technica ATH AD500X",
-						"150": "Audio Technica ATH AD900X",
-						"200": "AKG K702 and Q701",
-						"250": "Beyerdynamic DT880 Premium",
-						"550": "Audio Technica ATH AD2000X"
+						"Superlux HD681(b)": "30",
+						"Philips SHP9500": "75",
+						"Audio Technica ATH AD500X": "80",
+						"Audio Technica ATH AD900X": "150",
+						"AKG K702 and Q701": "200",
+						"Beyerdynamic DT880 Premium": "250",
+						"Audio Technica ATH AD2000X": "550"
 					},
 					"Bass": {
-						"40": "Superlux EVO",
-						"100": "Sennheiser HD558",
-						"200": "AKG K7XX",
-						"400": "Sennheiser HD650",
-						"550": "Audioquest Nighthawk"
+						"Superlux EVO": "40",
+						"Sennheiser HD558": "100",
+						"AKG K7XX": "200",
+						"Sennheiser HD650": "400",
+						"Audioquest Nighthawk": "550"
 					},
 					"Neutral": {
-						"100": "AKG K240 Studio",
-						"150": "AKG K612 Pro",
-						"150": "Sennheiser HD598",
-						"300": "Sennheiser HD600",
-						"350": "Audio Technica ATH R70X",
-						"450": "Hifiman HE400i"
+						"AKG K240 Studio": "100",
+						"AKG K612 Pro": "150",
+						"Sennheiser HD598": "150",
+						"Sennheiser HD600": "300",
+						"Audio Technica ATH R70X": "350",
+						"Hifiman HE400i": "450"
 					}
 				},
 				"Closed Back": {
 					"V Shaped": {
-						"150": "Beyerdynamic DT770 Studio",
-						"175": "Shure SRH 840",
-						"250": "Cascadia Audio TALOS",
-						"400": "Fostex TH-X00",
-						"550": "Shure SRH1540",
-						"1200": "Fostex TH900"
+						"Beyerdynamic DT770 Studio": "150",
+						"Shure SRH 840": "175",
+						"Cascadia Audio TALOS": "250",
+						"Fostex TH-X00": "400",
+						"Shure SRH1540": "550",
+						"Fostex TH900": "1200"
 					},
 					"Mid Forward": {
-						"160": "Fostex T50RP Mk3",
-						"175": "Audio Technica ATH A900X",
-						"300": "Beyerdynamic T70p",
-						"400": "Audio Technica ATH A1000Z"
+						"Fostex T50RP Mk3": "160",
+						"Audio Technica ATH A900X": "175",
+						"Beyerdynamic T70p": "300",
+						"Audio Technica ATH A1000Z": "400"
 					},
 					"Bass": {
-						"20": "Sennheiser HD202",
-						"150": "Fostex T20RP Mk3",
-						"175": "AKG K553 PRO",
-						"480": "ZMF Vibro MkII"
+						"Sennheiser HD202": "20",
+						"Fostex T20RP Mk3": "150",
+						"AKG K553 PRO": "175",
+						"ZMF Vibro MkII": "480"
 					},
 					"Neutral": {
-						"90": "NVX XPT 100",
-						"110": "Brainwavz HM5"
+						"NVX XPT 100": "90",
+						"Brainwavz HM5": "110"
 					}
 				}
 			}
@@ -97,30 +97,30 @@
 			"null": {
 				"Open Back": {
 					"null": {
-						"20": "Koss KSC75",
-						"50": "Koss Porta Pro",
-						"70": "Sennheiser HD239"
+						"Koss KSC75": "20",
+						"Koss Porta Pro": "50",
+						"Sennheiser HD239": "70"
 					}
 				},
 				"Closed Back": {
 					"V Shaped": {
-						"55": "Beyerdynamic DTX350M",
-						"85": "Beyerdynamic DTX501P",
-						"200": "Beyerdynamic T51P"
+						"Beyerdynamic DTX350M": "55",
+						"Beyerdynamic DTX501P": "85",
+						"Beyerdynamic T51P": "200"
 					},
 					"Mid Forward": {
-						"475": "Audeze Sine"
+						"Audeze Sine": "475"
 					},
 					"Bass": {
-						"90": "Sennheiser Urbanite On Ear",
-						"120": "Beats Solo 2",
-						"175": "V-Moda XS"
+						"Sennheiser Urbanite On Ear": "90",
+						"Beats Solo 2": "120",
+						"V-Moda XS": "175"
 					},
 					"Neutral": {
-						"75": "Noontec Zoro HDII",
-						"150": "Sennheiser HD25",
-						"175": "Beyerdynamic DT1350",
-						"250": "Sennheiser Amperior"
+						"Noontec Zoro HDII": "75",
+						"Sennheiser HD25": "150",
+						"Beyerdynamic DT1350": "175",
+						"Sennheiser Amperior": "250"
 					}
 				}
 			}
@@ -129,69 +129,69 @@
 			"Over Ear": {
 				"null": {
 					"V Shaped": {
-						"55": "TFZ Series 3",
-						"75": "Vsonic VSD5",
-						"100": "RHA MA750",
-						"275": "Fidue A83"
+						"TFZ Series 3": "55",
+						"Vsonic VSD5": "75",
+						"RHA MA750": "100",
+						"Fidue A83": "275"
 					},
 					"Mid Forward": {
-						"40": "Vsonic VSD2S",
-						"120": "Hippo Pro One",
-						"175": "Shure SE315",
-						"300": "Audio Technica ATH IM03"
+						"Vsonic VSD2S": "40",
+						"Hippo Pro One": "120",
+						"Shure SE315": "175",
+						"Audio Technica ATH IM03": "300"
 					},
 					"Bass": {
-						"12": "KZ ATE",
-						"40": "Vsonic VSD3S",
-						"50": "Audio Technica ATH IM50",
-						"80": "TFZ Series 5",
-						"100": "Shure SE215",
-						"185": "RHA T10(i)",
-						"280": "Logitech UE900s",
-						"300": "Sennheiser IE80",
-						"550": "Westone W50"
+						"KZ ATE": "12",
+						"Vsonic VSD3S": "40",
+						"Audio Technica ATH IM50": "50",
+						"TFZ Series 5": "80",
+						"Shure SE215": "100",
+						"RHA T10(i)": "185",
+						"Logitech UE900s": "280",
+						"Sennheiser IE80": "300",
+						"Westone W50": "550"
 					},
 					"Neutral": {
-						"45": "MEE Audio M6PRO",
-						"100": "VSonic GR07",
-						"200": "MEE Audio Pinnacle (P1)",
-						"200": "Audio Technica ATH IM02",
-						"300": "Shure SE425",
-						"375": "Westone W30",
-						"650": "DITA The Answer"
+						"MEE Audio M6PRO": "45",
+						"VSonic GR07": "100",
+						"MEE Audio Pinnacle (P1)" : "200",
+						"Audio Technica ATH IM02": "200",
+						"Shure SE425": "300",
+						"Westone W30": "375",
+						"DITA The Answer": "650"
 					}
 				}
 			},
 			"Straight Down": {
 				"null": {
 					"V Shaped": {
-						"10": "Philips SHE3595",
-						"25": "Xiaomi Hybrid",
-						"80": "One More Triple Driver",
-						"100": "Sennheiser Momentum In Ear",
-						"180": "Dunu DN-1000",
-						"275": "Dunu DN-2000"
+						"Philips SHE3595": "10",
+						"Xiaomi Hybrid": "25",
+						"One More Triple Driver": "80",
+						"Sennheiser Momentum In Ear": "100",
+						"Dunu DN-1000": "180",
+						"Dunu DN-2000": "275"
 					},
 					"Mid Forward": {
-						"75": "FiiO EX1",
-						"130": "Dunu Titan 3",
-						"300": "Dunu DN-2000J"
+						"FiiO EX1": "75",
+						"Dunu Titan 3": "130",
+						"Dunu DN-2000J": "300"
 					},
 					"Bass": {
-						"30": "Vsonic GR02/BE",
-						"35": "Soundmagic E10",
-						"50": "Soundmagic E50S",
-						"85": "Yamaha EPH-100SL",
-						"175": "JVC HA-FX750"
+						"Vsonic GR02/BE": "30",
+						"Soundmagic E10": "35",
+						"Soundmagic E50S": "50",
+						"Yamaha EPH-100SL": "85",
+						"JVC HA-FX750": "175"
 					},
 					"Neutral": {
-						"20": "Brainwavz Delta",
-						"30": "Zero Audio Carbo Tenore",
-						"60": "Fidue A63",
-						"80": "Hifiman RE400",
-						"95": "Philips Fidelio S2",
-						"120": "Etymotic Resarch HF5",
-						"350": "Etymotic Research ER4SR"
+						"Brainwavz Delta": "20",
+						"Zero Audio Carbo Tenore": "30",
+						"Fidue A63": "60",
+						"Hifiman RE400": "80",
+						"Philips Fidelio S2": "95",
+						"Etymotic Resarch HF5": "120",
+						"Etymotic Research ER4SR": "350"
 					}
 				}
 			}
