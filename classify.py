@@ -1,6 +1,5 @@
 import numpy as np
 import sys
-import scipy.fftpack as fftpack
 import scipy.integrate as integrate
 from scipy.io import wavfile
 from scipy import signal
@@ -63,7 +62,7 @@ def runClassify(inputname):
 	sampling_freq, data = loadData(inputname)
 
 	NFFT = 4096
-	freq_arr, pxx_den = welch(data, sampling_freq, NFFT)
+	_, pxx_den = welch(data, sampling_freq, NFFT)
 	cut1, cut2, cut3 = findCutoffIndices(len(pxx_den), sampling_freq, NFFT)
 	
 	bass, mid, treble = integratePxx(pxx_den, cut1, cut2, cut3)
