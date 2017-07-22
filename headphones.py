@@ -9,8 +9,6 @@ def typeReccomend(data):
     opt1 = data.get('opt1', 'null')
     opt2 = data.get('opt2', 'null')
     sig = data['sig']
-    print(opt1)
-    print(opt2)
 
     if headphoneType == 'On Ear' and opt2 == 'Open Back':
         sig = 'null'
