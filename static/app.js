@@ -37,28 +37,27 @@ let showErr = function () {
 	$('#submit').removeClass('loading')
 }
 
-/* FORM SUBMISSION */
-$('form').on('submit', function(e) {
-	e.preventDefault()
-
-	$('#submit').addClass('loading')
-	$('#error-toast').hide() // hide error on resubmit
-
+let validMp3Input = function () {
 	// verify if .mp3 file
 	let mp3 = $('#input-file')[0].files[0]
 	if (!mp3.name.endsWith('.mp3')) {
 		$('#error-msg').text('Invalid file, please select an .mp3')
 		showErr()
-		return
+		return false
 	}
 
 	// verify if .mp3 is under 20MB
 	if (mp3.size > 20971520) {
 		$('#error-msg').text('File too large, please select a smaller .mp3 under 20MB')
 		showErr()
-		return
+		return false
 	}
 
+	return true
+}
+
+let submitData = function () {
+	let mp3 = $('#input-file')[0].files[0]
 	// create form data
 	const data = new FormData()
 	data.append('type', $('#type option:selected').text())
@@ -90,6 +89,16 @@ $('form').on('submit', function(e) {
 			showErr()
 			console.log(error)
 		})
+}
+
+/* FORM SUBMISSION */
+$('form').on('submit', function(e) {
+	e.preventDefault()
+
+	$('#submit').addClass('loading')
+	$('#error-toast').hide() // hide error on resubmit
+
+	if (validMp3Input()) submitData()
 })
 
 /* CLOSING ACTIONS */
