@@ -62,10 +62,17 @@ $('form').on('submit', function(e) {
 	// create form data
 	const data = new FormData()
 	data.append('type', $('#type option:selected').text())
-	data.append('portability', $('#portability option:selected').text())
-	data.append('fit', $('#fit option:selected').text())
+
+	if ($('#portability').is(':visible'))
+		data.append('opt1', $('#portability option:selected').text())
+
+	if ($('#fit').is(':visible'))
+		data.append('opt1', $('#fit option:selected').text())
+
+	if ($('#soundstage').is(':visible'))
+		data.append('opt2', $('#soundstage option:selected').text())
+
 	data.append('price', $('#price option:selected').text())
-	data.append('backing', $('#soundstage option:selected').text())
 	data.append('file', mp3)
 
 	axios.post('/upload', data)
