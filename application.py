@@ -38,8 +38,7 @@ def upload_file():
 
     data = request.form.to_dict()
     data['sig'] = classification
-    #TODO: Choose Headphones based off of these params
-    # print(typeReccomend(data))
+
     return headphones.typeReccomend(data)
 
 

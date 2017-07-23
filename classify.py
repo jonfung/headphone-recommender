@@ -8,6 +8,9 @@ import os
 #loads the data
 def loadData (inStr):
 	filePath = 	os.path.join("uploads", inStr)
+
+	print("loading" + filePath)
+
 	rate, data = wavfile.read(filePath)
 
 	#if only a single array is returned (in the case of recordings, return it.)
