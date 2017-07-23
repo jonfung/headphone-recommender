@@ -58,6 +58,10 @@ let validMp3Input = function () {
 
 let submitData = function () {
 	let mp3 = $('#input-file')[0].files[0];
+
+	//Reset Form
+	$('#headphonetable').empty();
+	$('.modal-open').hide();
 	// create form data
 	const data = new FormData();
 	data.append('type', $('#type option:selected').text());
@@ -82,6 +86,7 @@ let submitData = function () {
 			$('#response').text(response.data.signature);
 			$('#response-modal').addClass('active');
 			$('#submit').removeClass('loading');
+			$('.modal-open').show();
 
 			var table = makeTable(response.data.headphones);
 			$(table).appendTo('#headphonetable');
@@ -108,13 +113,13 @@ $('form').on('submit', function(e) {
 });
 
 /* CLOSING ACTIONS */
-$('.modal-overlay').on('click', function() {
+
+$('.modal-close').on('click', function() {
 	$('#response-modal').removeClass('active');
 });
 
-$('#modal-close').on('click', function() {
-	$('#response-modal').removeClass('active');
-	$('#headphonetable').empty();
+$('.modal-open').on('click', function() {
+	$('#response-modal').addClass('active');
 });
 
 $('#error-close').on('click', function() {
