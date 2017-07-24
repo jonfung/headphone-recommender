@@ -4,6 +4,7 @@ import scipy.integrate as integrate
 from scipy.io import wavfile
 from scipy import signal
 import os
+import gc
 
 #loads the data
 def loadData (inStr):
@@ -65,6 +66,8 @@ def runClassify(inputname):
 	sampling_freq, data = loadData(inputname)
 	NFFT = 4096
 	_, pxx_den = welch(data, sampling_freq, NFFT)
+	data = None
+	gc.collect()
 	cut1, cut2, cut3 = findCutoffIndices(len(pxx_den), sampling_freq, NFFT)
 	bass, mid, treble = integratePxx(pxx_den, cut1, cut2, cut3)
 	bpercent, mpercent, tpercent = percent(bass, mid, treble)
