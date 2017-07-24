@@ -71,7 +71,7 @@ def runClassify(inputname):
 	song_length = len(data)/sampling_freq
 	if SONG_DURATION_LIMITATION and song_length > 255:
 		filePath = os.path.join("uploads", inputname)
-		raise InvalidUsage('Song must be shorter due to Heroku RAM restrictions, sorry.', filePath, status_code=12)
+		raise InvalidUsage('Song must be shorter due to Heroku RAM restrictions, sorry.', filePath, status_code=499)
 
 	NFFT = 4096
 	_, pxx_den = welch(data, sampling_freq, NFFT)
