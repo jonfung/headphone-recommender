@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
 import classify
 import convert
@@ -40,6 +40,16 @@ def upload_file():
     data['sig'] = classification
 
     return headphones.typeReccomend(data)
+
+
+
+@app.errorhandler(classify.InvalidUsage)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    os.remove(error.path)
+    return response
+
 
 
 if __name__ == '__main__':

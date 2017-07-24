@@ -85,8 +85,12 @@ let submitData = function () {
 
 			var table = makeTable(response.data.headphones);
 			$(table).appendTo('#headphonetable');
+
 		})
 		.catch(function (error) {
+			if (error.response.data.message){
+				$('#error-msg').text(error.response.data.message);
+			}
 			showErr();
 		});
 };

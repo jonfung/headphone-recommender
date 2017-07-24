@@ -17,7 +17,7 @@
 	<h2 style="margin-top:10%">Headphone Recommender</h2>
 	<div class="toast toast-error" id="error-toast" style="display:none">
 		<button class="btn btn-clear float-right" id="error-close"></button>
-		Error: <span id="error-msg"></span> :(
+		Error: <span id="error-msg"></span>     :(
 	</div>
 	<div class="columns">
 		<div class="column">
@@ -80,6 +80,9 @@
 				<li>Input an mp3 file for a song you like</li>
 				<li>The file is analyzed for it's sound signature</li>
 				<li>A headphone is recommended based on your preferences</li>
+				<li>Note: Heroku only has 512 mb of ram, which is not enough to perform fft on large file sizes. Please keep song durations to under 4:15.
+				</li>
+
 			</ol>
 			<div class="divider text-center" data-content="INFORMATION"></div>
 			<div class="column" id="overearhelp">
@@ -120,7 +123,7 @@
 			<div class="modal-body">
 				<div class="content">
 					<p>Analyzed frequency response type: <b id="response"></b>.</p>
-					<p>Reccommended Headphones: </p>
+					<p>Recommended Headphones: </p>
 				</div>
 				<div id="headphonetable"> </div>
 			</div>

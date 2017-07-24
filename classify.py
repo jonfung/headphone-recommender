@@ -4,7 +4,10 @@ import scipy.integrate as integrate
 from scipy.io import wavfile
 from scipy import signal
 import os
-import gc
+
+#set this to false if using without song limitation
+SONG_DURATION_LIMITATION = True;
+
 
 #loads the data
 def loadData (inStr):
@@ -64,10 +67,14 @@ def classify(b, m, h):
 def runClassify(inputname):
 	assert inputname.find('.wav') > -1
 	sampling_freq, data = loadData(inputname)
+	
+	song_length = len(data)/sampling_freq
+	if SONG_DURATION_LIMITATION and song_length > 255:
+		filePath = os.path.join("uploads", inputname)
+		raise InvalidUsage('Song must be shorter due to Heroku RAM restrictions, sorry.', filePath, status_code=12)
+
 	NFFT = 4096
 	_, pxx_den = welch(data, sampling_freq, NFFT)
-	data = None
-	gc.collect()
 	cut1, cut2, cut3 = findCutoffIndices(len(pxx_den), sampling_freq, NFFT)
 	bass, mid, treble = integratePxx(pxx_den, cut1, cut2, cut3)
 	bpercent, mpercent, tpercent = percent(bass, mid, treble)
@@ -75,6 +82,21 @@ def runClassify(inputname):
 
 	return result
 
+class InvalidUsage(Exception):
+    status_code = 400
+
+    def __init__(self, message, path, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+        self.path = path
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
 
 #USE BY:
 #python3 classify.py [yoursong].wav
