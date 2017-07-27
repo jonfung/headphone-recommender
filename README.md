@@ -16,9 +16,9 @@ Notice how for [Runaway](https://youtu.be/Bm5iA4Zupek?t=60), a signifigant porti
 
 However, for [All out of Love](https://youtu.be/JWdZEumNRmI?t=14), which is filled with vocals and higher frequencied guitar sounds, we notice the PSD to have a greater amount of frequencies lying in the high end (bump on end of the log scale). Combined with the bump in the lower freuqencies of the PSD, we determine the sound signature to be V-shaped.
 
-By then integrating between frequency boundaries, we can quantify low, mid, and high values. Because Welch's method normalizes the PSD to satisfy Parseval's relation (total power in time domain is same as total power in frequency domain), we can comapre the low, mid, and high ratios to determine sound signature of the song.
+By then integrating between frequency boundaries, we can quantify low, mid, and high values. Because Welch's method normalizes the PSD to satisfy Parseval's relation (total power in time domain is same as total power in frequency domain), we can compare the low, mid, and high ratios to determine sound signature of the song.
 
-After that, a few questions are asked about preferred headphone form factor and type, and a suitable pair of headphones can be reccomended!
+After that, a few questions are asked about preferred headphone form factor and type, and a suitable pair of headphones can be recomended!
 
 
 ## Usage
