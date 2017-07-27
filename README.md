@@ -43,10 +43,10 @@ To remove song length restriction, set line 9 of `classify.py` to be:
 
   `SONG_DURATION_LIMITATION = True;`
 
-Start the flask application:
-
+Configure and start the flask application:
+	
 	$ python3 application.py
 
 Open localhost at browser:
 
-	http://0.0.0.0:5000/
+	http://127.0.0.1:5000/
