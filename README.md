@@ -27,7 +27,7 @@ Currently hosted on heroku at link above. However, there is a song length restri
 Clone the repository.
 
     $ git clone https://github.com/jonfung/headphone-recommender.git
-    $ cd flask-app-template
+    $ cd headphone-recommender
 Create a virtualenv and activate.
 
     $ virtualenv env 
