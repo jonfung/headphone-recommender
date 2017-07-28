@@ -3,11 +3,12 @@ import sys
 import scipy.integrate as integrate
 from scipy.io import wavfile
 from scipy import signal
+import matplotlib.pyplot as plt
 import os
 
 #set this to false if using without song limitation
 SONG_DURATION_LIMITATION = True;
-
+SAVE_FOLDER = 'plots'
 
 #loads the data
 def loadData (inStr):
@@ -64,6 +65,18 @@ def classify(b, m, h):
 		return "Bass"
 	return "Neutral"
 
+def plotResponse(inputname, pxx_den):
+	plt.figure(figsize=(20, 10))
+	plt.xscale('log')
+	plt.yscale('log')
+	plt.xlabel('frequency [Hz]')
+	plt.ylabel('PSD [V**2/Hz]')
+	plt.plot(pxx_den)
+	name = os.path.splitext(inputname)[0]
+	path = os.path.join('plots', name) + '.png'
+	plt.savefig(path, bbox_inches='tight')
+	return path
+
 def runClassify(inputname):
 	assert inputname.find('.wav') > -1
 	sampling_freq, data = loadData(inputname)
@@ -75,12 +88,13 @@ def runClassify(inputname):
 
 	NFFT = 4096
 	_, pxx_den = welch(data, sampling_freq, NFFT)
+	plotpath = plotResponse(inputname, pxx_den)
 	cut1, cut2, cut3 = findCutoffIndices(len(pxx_den), sampling_freq, NFFT)
 	bass, mid, treble = integratePxx(pxx_den, cut1, cut2, cut3)
 	bpercent, mpercent, tpercent = percent(bass, mid, treble)
 	result = classify(bpercent, mpercent, tpercent)
 
-	return result
+	return result, plotpath
 
 class InvalidUsage(Exception):
     status_code = 400

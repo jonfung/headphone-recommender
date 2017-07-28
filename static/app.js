@@ -84,6 +84,7 @@ let submitData = function () {
 	axios.post('/upload', data) // eslint-disable-line no-undef
 		.then(function (response) {
 			$('#response').text(response.data.signature);
+			$('#freqPlot').attr("src", response.data.plotpath);
 			$('#response-modal').addClass('active');
 			$('#submit').removeClass('loading');
 			$('.modal-open').show();

@@ -22,6 +22,10 @@ app = Flask(__name__)
 def index(path):
     return send_from_directory('static', path)
 
+@app.route('/plots/<path>', methods=['GET'])
+def getPlot(path):
+    return send_from_directory('plots', path)
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if not os.path.exists(UPLOAD_FOLDER):
@@ -33,13 +37,13 @@ def upload_file():
     wavname = mp3name[:len(mp3name) - 4] + ".wav"
     convert.convert(mp3name, wavname)
 
-    classification = classify.runClassify(wavname)
+    classification, plotpath = classify.runClassify(wavname)
     os.remove(os.path.join(UPLOAD_FOLDER, wavname))
 
     data = request.form.to_dict()
     data['sig'] = classification
 
-    return headphones.typeReccomend(data)
+    return headphones.typeReccomend(data, plotpath)
 
 
 
