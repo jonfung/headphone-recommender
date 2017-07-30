@@ -22,12 +22,25 @@ $('#type, #portability').on('input', function() {
 
 let makeTable = function (data) {
 	let table = '<table class="table table-striped table-hover">';
-	table += '<thead><tr><th>Price</th>';
+	table += '<thead><tr><th>Estimated Price</th>';
 	table += '<th>Headphone</th></tr></thead><tbody>';
-	$.each(data, function (name, price) {
-		let row = `<tr><td>$${price}</td><td>${name}</td><tr>`;
-		table += row;
+
+	headphones = []
+	$.each(data, function(name, price) {
+		h = Object();
+		h.name = name;
+		h.price = price;
+		headphones.push(h)
 	});
+	headphones.sort(function(a, b) {
+		return parseInt(a.price) - parseInt(b.price)
+	});
+	for (var i = 0; i < headphones.length; ++i) {
+		let price = headphones[i].price, name = headphones[i].name
+		let url = 'https://www.amazon.com/s/field-keywords=' + encodeURI(name)
+		let row = `<tr><td>$${price}</td><td><a href=${url} target="_blank">${name}</a></td><tr>`;
+		table += row;
+	}
 	table += '</tbody></table>';
 	return table;
 };
@@ -84,10 +97,11 @@ let submitData = function () {
 	axios.post('/upload', data) // eslint-disable-line no-undef
 		.then(function (response) {
 			$('#response').text(response.data.signature);
-			$('#freqPlot').attr("src", response.data.plotpath);
+			$('#freqPlot').attr('src', response.data.plotpath);
 			$('#response-modal').addClass('active');
 			$('#submit').removeClass('loading');
 			$('.modal-open').show();
+			console.log(response.data.headphones)
 
 			var table = makeTable(response.data.headphones);
 			$(table).appendTo('#headphonetable');

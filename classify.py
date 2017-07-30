@@ -5,6 +5,7 @@ from scipy.io import wavfile
 from scipy import signal
 import matplotlib.pyplot as plt
 import os
+import shutil
 
 #set this to false if using without song limitation
 SONG_DURATION_LIMITATION = True;
@@ -66,12 +67,17 @@ def classify(b, m, h):
 	return "Neutral"
 
 def plotResponse(inputname, pxx_den):
+	#Delete what was previously in the folder
+	shutil.rmtree(SAVE_FOLDER)
+	os.mkdir(SAVE_FOLDER) 
+
 	plt.figure(figsize=(20, 10))
 	plt.xscale('log')
 	plt.yscale('log')
-	plt.xlabel('frequency [Hz]')
-	plt.ylabel('PSD [V**2/Hz]')
-	plt.plot(pxx_den)
+	plt.rc('xtick', labelsize=30)
+	axes = plt.gca()
+	axes.axes.get_yaxis().set_visible(False)
+	plt.plot(pxx_den, color='#4c59c2')
 	name = os.path.splitext(inputname)[0]
 	path = os.path.join('plots', name) + '.png'
 	plt.savefig(path, bbox_inches='tight')
