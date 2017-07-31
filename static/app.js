@@ -25,19 +25,20 @@ let makeTable = function (data) {
 	table += '<thead><tr><th>Estimated Price</th>';
 	table += '<th>Headphone</th></tr></thead><tbody>';
 
-	let headphones = []
+	let headphones = [];
 	$.each(data, function(name, price) {
 		let h = Object();
 		h.name = name;
 		h.price = price;
-		headphones.push(h)
+		headphones.push(h);
 	});
 	headphones.sort(function(a, b) {
 		return parseInt(a.price) - parseInt(b.price);
 	});
 	for (let i = 0; i < headphones.length; ++i) {
-		let price = headphones[i].price, name = headphones[i].name
-		let url = 'https://www.amazon.com/s/field-keywords=' + encodeURI(name)
+		let price = headphones[i].price;
+		let name = headphones[i].name;
+		let url = 'https://www.amazon.com/s/field-keywords=' + encodeURI(name);
 		let row = `<tr><td>$${price}</td><td><a href=${url} target="_blank">${name}</a></td><tr>`;
 		table += row;
 	}
@@ -101,7 +102,7 @@ let submitData = function () {
 			$('#response-modal').addClass('active');
 			$('#submit').removeClass('loading');
 			$('.modal-open').show();
-			console.log(response.data.headphones)
+			console.log(response.data.headphones); // eslint-disable-line no-console
 
 			let table = makeTable(response.data.headphones);
 			$(table).appendTo('#headphonetable');

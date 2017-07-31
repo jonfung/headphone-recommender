@@ -71,7 +71,7 @@ def classify(b, m, h):
 def plotResponse(inputname, pxx_den):
 	#Delete what was previously in the folder
 	shutil.rmtree(SAVE_FOLDER)
-	os.mkdir(SAVE_FOLDER) 
+	os.mkdir(SAVE_FOLDER)
 
 	plt.figure(figsize=(20, 10))
 	plt.xscale('log')
@@ -88,7 +88,6 @@ def plotResponse(inputname, pxx_den):
 def runClassify(inputname):
 	assert inputname.find('.wav') > -1
 	sampling_freq, data = loadData(inputname)
-	
 	song_length = len(data)/sampling_freq
 	if SONG_DURATION_LIMITATION and song_length > 255:
 		filePath = os.path.join("uploads", inputname)
