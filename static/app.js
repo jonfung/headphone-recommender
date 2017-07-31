@@ -25,9 +25,9 @@ let makeTable = function (data) {
 	table += '<thead><tr><th>Estimated Price</th>';
 	table += '<th>Headphone</th></tr></thead><tbody>';
 
-	var headphones = []
+	let headphones = []
 	$.each(data, function(name, price) {
-		var h = Object();
+		let h = Object();
 		h.name = name;
 		h.price = price;
 		headphones.push(h)
@@ -35,7 +35,7 @@ let makeTable = function (data) {
 	headphones.sort(function(a, b) {
 		return parseInt(a.price) - parseInt(b.price);
 	});
-	for (var i = 0; i < headphones.length; ++i) {
+	for (let i = 0; i < headphones.length; ++i) {
 		let price = headphones[i].price, name = headphones[i].name
 		let url = 'https://www.amazon.com/s/field-keywords=' + encodeURI(name)
 		let row = `<tr><td>$${price}</td><td><a href=${url} target="_blank">${name}</a></td><tr>`;
@@ -103,7 +103,7 @@ let submitData = function () {
 			$('.modal-open').show();
 			console.log(response.data.headphones)
 
-			var table = makeTable(response.data.headphones);
+			let table = makeTable(response.data.headphones);
 			$(table).appendTo('#headphonetable');
 
 		})
