@@ -8,7 +8,7 @@ import os
 import shutil
 
 #set this to false if using without song limitation
-SONG_DURATION_LIMITATION = True;
+SONG_DURATION_LIMITATION = True
 SAVE_FOLDER = 'plots'
 
 #loads the data
