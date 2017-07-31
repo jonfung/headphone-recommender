@@ -25,15 +25,15 @@ let makeTable = function (data) {
 	table += '<thead><tr><th>Estimated Price</th>';
 	table += '<th>Headphone</th></tr></thead><tbody>';
 
-	headphones = []
+	var headphones = []
 	$.each(data, function(name, price) {
-		h = Object();
+		var h = Object();
 		h.name = name;
 		h.price = price;
 		headphones.push(h)
 	});
 	headphones.sort(function(a, b) {
-		return parseInt(a.price) - parseInt(b.price)
+		return parseInt(a.price) - parseInt(b.price);
 	});
 	for (var i = 0; i < headphones.length; ++i) {
 		let price = headphones[i].price, name = headphones[i].name
