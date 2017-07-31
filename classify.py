@@ -3,6 +3,8 @@ import sys
 import scipy.integrate as integrate
 from scipy.io import wavfile
 from scipy import signal
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 import shutil
