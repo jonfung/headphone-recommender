@@ -59,18 +59,11 @@
 						<option>Open Back</option>
 						<option>Closed Back</option>
 					</select>
-				</div>				
-				<!-- form select control -->
-				<div class="form-group">
-					<label class="form-label" for="price">Price Range</label>
-					<select class="form-select" id="price" required>
-						<option>$0-$50</option>
-						<option>$50-$100</option>
-						<option>$100-$300</option>
-						<option>$300+</option>
-					</select>
 				</div>
-				<button class="btn btn-primary input-group-btn" type="submit" id="submit">Submit</button>
+				<div style="margin-top: 20px" >
+					<button class="btn btn-primary input-group-btn modal-open" type="button" style="display:none">Show Results</button>
+					<button class="btn btn-primary input-group-btn" type="submit" id="submit">Submit</button>
+				</div>
 			</form>
 		</div>
 		<div class="divider-vert"></div>
@@ -114,21 +107,25 @@
 		</div>
 	</div>
 	<div class="modal" id="response-modal">
-		<div class="modal-overlay"></div>
+		<div class="modal-overlay modal-close"></div>
 		<div class="modal-container">
 			<div class="modal-header">
-				<button class="btn btn-clear float-right"></button>
-				<div class="modal-title">Analysis Results</div>
+				<button class="btn btn-clear float-right modal-close"></button>
+				<div class="modal-title"><b>Analysis Results</b></div>
 			</div>
 			<div class="modal-body">
+				<div id="freqdata" class="content">
+					<p>Frequency Response Plot</p>
+					<img id="freqPlot" width="500px">
+				</div>
 				<div class="content">
-					<p>Analyzed frequency response type: <b id="response"></b>.</p>
+					<p>Analyzed frequency response type most closely matched: <b id="response"></b>.</p>
 					<p>Recommended Headphones: </p>
 				</div>
 				<div id="headphonetable"> </div>
 			</div>
 			<div class="modal-footer">
-				<a href="javascript:void(0)" class="btn btn-primary" id="modal-close">close</a>
+				<a href="javascript:void(0)" class="btn btn-primary modal-close">close</a>
 			</div>
 		</div>
 	</div>

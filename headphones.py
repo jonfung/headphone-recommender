@@ -4,7 +4,7 @@ from flask import jsonify
 with open('data.json') as dataFile:
     jsonData = json.load(dataFile)
 
-def typeReccomend(data):
+def typeReccomend(data, plotpath):
     headphoneType = data['type']
     opt1 = data.get('opt1', 'null')
     opt2 = data.get('opt2', 'null')
@@ -14,4 +14,4 @@ def typeReccomend(data):
         sig = 'null'
 
     cans = jsonData['headphones'][headphoneType][opt1][opt2][sig]
-    return jsonify(signature = sig, headphones = cans)
+    return jsonify(signature = sig, headphones = cans, plotpath=plotpath)
