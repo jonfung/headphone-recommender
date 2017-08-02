@@ -12,7 +12,8 @@
     "axios": "^0.16.2",
     "jquery": "^3.2.1",
     "spectre.css": "^0.2.14",
-    "vue": "^2.3.3"
+    "vue": "^2.3.3",
+    "vue-progressbar": "^0.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

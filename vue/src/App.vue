@@ -21,7 +21,7 @@
               </select>
             </div>
             <div style="margin-top: 20px" >
-              <button class="btn btn-primary input-group-btn modal-open" type="button" style="display:none">Show Results</button>
+              <button class="btn btn-primary input-group-btn" type="button" style="display:none" v-on:click="showModal">Show Results</button>
               <button class="btn btn-primary input-group-btn" type="submit" id="submit">Submit</button>
             </div>
           </form>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="modal" id="response-modal">
-        <div class="modal-overlay modal-close"></div>
+        <div class="modal-overlay" v-on:click="closeModal"></div>
         <div class="modal-container">
           <div class="modal-header">
             <button class="btn btn-clear float-right modal-close"></button>
@@ -65,6 +65,7 @@
         </div>
       </div>
     </div>
+    <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 
@@ -74,6 +75,12 @@ import axios from 'axios'
 
 export default {
   name: 'app',
+  mounted () {
+    this.$Progress.finish();
+  },
+  created () {
+    this.$Progress.start();
+  },
   data () {
     return {
       help: {
@@ -263,6 +270,8 @@ export default {
       data.append('price', $('#price option:selected').text());
       data.append('file', mp3);
 
+      this.$Progress.start();
+
       axios.post('/upload', data) // eslint-disable-line no-undef
         .then((response) => {
           $('#response').text(response.data.signature);
@@ -275,6 +284,7 @@ export default {
           let table = this.makeTable(response.data.headphones);
           $(table).appendTo('#headphonetable');
 
+          this.$Progress.finish();
         })
         .catch((error) => {
           let msg = error.response.status;
@@ -283,7 +293,15 @@ export default {
           }
           $('#error-msg').text(msg);
           this.showErr();
+
+          this.$Progress.fail();
         });
+    },
+    closeModal: function () {
+      $('#response-modal').removeClass('active');
+    },
+    showModal: function () {
+      $('#response-modal').addClass('active');
     }
   }
 }
